@@ -14,23 +14,16 @@ import { HeroService } from '../hero.service';
   imports: [FormsModule, NgIf, NgFor, UpperCasePipe],
 })
 export class HeroesComponent implements OnInit {
-  constructor(private heroService: HeroService) {}
   heroes: Hero[] = [];
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm',
-  };
+
+  constructor(private heroService: HeroService) { }
+
   ngOnInit(): void {
-    this.heroService.getHeroes();
+    this.getHeroes();
   }
 
   getHeroes(): void {
     this.heroService.getHeroes()
-        .subscribe(heroes => this.heroes = heroes);
-  }
-  
-  selectedHero?: Hero;
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
+    .subscribe(heroes => this.heroes = heroes);
   }
 }
